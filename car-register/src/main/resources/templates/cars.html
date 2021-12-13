@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Car Register</title>
+    </head>
+<body>
+    <header></header>
+    <h1>Cars</h1>
+    <section>
+        <h2>Add car</h2>
+        <form th:action="@{/cars}" method="POST">
+            <p><input name="serialnumber" placeholder="serialnumber"></input></p>
+            <p><input name="registrationnumber" placeholder="registrationnumber"></input></p>
+            <p><input name="brand" placeholder="brand"></input></p>
+            <p><input name="model" placeholder="model"></input></p>
+            <p><input name="made" placeholder="made (year)"></input></p>
+            <input type="submit" value="Add"></input>
+        </form>
+    </section>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>serialnumber</th>
+                    <th>registrationnumber</th>
+                    <th>brand</th>
+                    <th>model</th>
+                    <th>made</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="car : ${cars}">
+                    <td th:text="${car.serialnumber}">serialnumber</td>
+                    <td th:text="${car.registrationnumber}">registrationnumber</td>
+                    <td th:text="${car.brand}">brand</td>
+                    <td th:text="${car.model}">model</td>
+                    <td th:text="${car.made}">made</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
