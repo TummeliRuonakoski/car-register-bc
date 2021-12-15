@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Car Register</title>
+  </head>
+  <body>
+    <header th:fragment="header">
+      <ul>
+        <li><a th:href="@{/index}">HOME</a></li>
+        <li><a th:href="@{/cars}">CARS</a></li>
+        <li><a th:href="@{/owner}">OWNERS</a></li>
+      </ul>
+    </header>
+    
+    <h1>Car Register</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>owner</th>
+          <th>registrationnumber</th>
+          <th>brand</th>
+          <th>model</th>
+          <th>made</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="car : ${cars}">
+            <td>
+                <ul>
+                    <li  th:each="owner : ${car.owners}">
+                        <div th:if="${owner.firstname} != null">
+                            <span th:text="${owner.firstname + ' ' + owner.lastname}"></span>
+                        </div>        
+                    </li>
+                </ul>
+            </td>
+          <td th:text="${car.registrationnumber}">registrationnumber</td>
+          <td th:text="${car.brand}">brand</td>
+          <td th:text="${car.model}">model</td>
+          <td th:text="${car.made}">made</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Car Register</title>
+  </head>
+
+  <style>
+  </style>
+  <body>
+    <header th:fragment="header">
+      <ul>
+        <li><a th:href="@{/index}">HOME</a></li>
+        <li><a th:href="@{/cars}">CARS</a></li>
+        <li><a th:href="@{/owner}">OWNERS</a></li>
+      </ul>
+    </header>
+    <h1>Owner</h1>
+    <h2>Add owner</h2>
+    <form th:action="@{/owner}" method="post">
+      <p><input name="firstname" placeholder="firstname" /></p>
+      <p><input name="lastname" placeholder="lastname" /></p>
+      <input type="submit" value="add" />
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>firstname</th>
+          <th>lastname</th>
+          <th>car(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="owner : ${owners}">
+          <td th:text="${owner.firstname}">firstname</td>
+          <td th:text="${owner.lastname}">lastname</td>
+          <td>
+            <ul id="cars">
+              <li th:each="car : ${owner.cars}">
+                <span th:text="${car.registrationnumber}"></span>
+              </li>
+            </ul>
+          </td>
+          <td><button><a th:href="@{/owner/{id}(id=${owner.id})}">Add car</a></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>
