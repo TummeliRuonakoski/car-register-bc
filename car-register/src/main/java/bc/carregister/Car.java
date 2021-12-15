@@ -35,7 +35,7 @@ public class Car extends AbstractPersistable<Long>{
     @Column
     private int made;
 
-    @ManyToMany(mappedBy = "cars")
+    @ManyToMany
     private List<Owner> owners = new ArrayList<>();
     
 }

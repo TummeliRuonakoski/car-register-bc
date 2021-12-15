@@ -20,6 +20,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
+
     public Car getCar(Long carId){
        return carRepository.getById(carId);
     }
@@ -28,7 +29,5 @@ public class CarService {
        carRepository.save(new Car(serialnumber, registrationnumber, brand, model, made, new ArrayList()));
     }
 
-    public void addOwnerToCar(Long carId, Long ownerId){
-        ownerRepository.getById(ownerId).getCars().add(carRepository.getById(carId));
-    }
+    
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Car Register</title>
+  </head>
+
+  <style>
+  #popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#popup >* {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+  </style>
+  <body>
+    <header th:fragment="header">
+      <ul>
+        <li><a th:href="@{/index}">HOME</a></li>
+        <li><a th:href="@{/cars}">CARS</a></li>
+        <li><a th:href="@{/owner}">OWNERS</a></li>
+      </ul>
+    </header>
+    <h1>Owner</h1>
+    <h2>Add owner</h2>
+    <form th:action="@{/owner}" method="post">
+      <p><input name="firstname" placeholder="firstname" /></p>
+      <p><input name="lastname" placeholder="lastname" /></p>
+      <input type="submit" value="add" />
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>firstname</th>
+          <th>lastname</th>
+          <th>car(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="owner : ${owners}">
+          <td th:text="${owner.firstname}">firstname</td>
+          <td th:text="${owner.lastname}">lastname</td>
+          <td>
+            <ul id="cars">
+              <li th:each="car : ${owner.cars}">
+                <span th:text="${car.registrationnumber}"></span>
+              </li>
+            </ul>
+          </td>
+          <td><button><a th:href="@{/owner/{id}(id=${owner.id})}">Add car</a></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

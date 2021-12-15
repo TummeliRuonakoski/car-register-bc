@@ -4,7 +4,13 @@
         <title>Car Register</title>
     </head>
 <body>
-    <header></header>
+    <header th:fragment="header">
+        <ul>
+            <li><a th:href="@{/index}">HOME</a></li>
+            <li><a th:href="@{/cars}">CARS</a></li>
+            <li><a th:href="@{/owner}">OWNERS</a></li>
+        </ul>
+    </header>
     <h1>Cars</h1>
     <section>
         <h2>Add car</h2>
@@ -14,7 +20,7 @@
             <p><input name="brand" placeholder="brand"></input></p>
             <p><input name="model" placeholder="model"></input></p>
             <p><input name="made" placeholder="made (year)"></input></p>
-            <input type="submit" value="Add"></input>
+            <input type="submit" value="add"></input>
         </form>
     </section>
     <section>

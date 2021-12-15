@@ -4,16 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 
 @Controller
 public class DefaultController {
     
-    @Autowired
-    private CarService carService;
 
     @Autowired
-    private OwnerService ownerService;
+    private CarRepository carRepository;
 
     @GetMapping("*")
     public String getDefault(){
@@ -22,8 +23,8 @@ public class DefaultController {
 
     @GetMapping("/index")
     public String getAll(Model model){
-        model.addAttribute("owners", ownerService.listAll());
-        model.addAttribute("cars", carService.listAll());
+         Pageable pageable = PageRequest.of(0,10, Sort.by("made").descending());
+         model.addAttribute("cars", carRepository.findAll(pageable));
         return "index";
     }
 

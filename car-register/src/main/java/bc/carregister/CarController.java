@@ -39,11 +39,5 @@ public class CarController {
     }
 
 
-    @PostMapping("cars/{carId}/owners/{ownerId}")
-    @Transactional
-    public String addOwnerToCar(@PathVariable Long carId, @PathVariable Long ownerId){
-        carService.addOwnerToCar(carId, ownerId);
-        return "redirect:/cars" + carId;
-    }
     
 }

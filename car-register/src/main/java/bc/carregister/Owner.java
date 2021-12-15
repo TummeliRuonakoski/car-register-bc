@@ -26,7 +26,7 @@ public class Owner extends AbstractPersistable<Long>{
     @Column
     private String lastname;
 
-    @ManyToMany
+    @ManyToMany(mappedBy= "owners")
     private List<Car> cars = new ArrayList<>();
     
 }
